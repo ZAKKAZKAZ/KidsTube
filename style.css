@@ -255,43 +255,56 @@ input:focus {
 .modal-content {
   width: 100%;
   height: 100%;
+  padding: 0; /* Remove padding for full edge-to-edge */
   background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
 }
 
 .close-btn {
-  background: white;
+  /* Overlay close button on top of video or near it, but keep it accessible */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.8);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 20px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  align-self: flex-end; /* Keep close button reachable */
+  z-index: 1001; /* Ensure above video */
 }
 
 #player-container {
   width: 100%;
   max-width: 100%;
+  /* Force 16:9 but allow feeling 'full' */
   aspect-ratio: 16/9;
-  max-height: 80vh; /* Don't overflow vertically */
+  width: 100vw; /* Force viewport width */
   background: black;
-  border-radius: 0; /* Remove rounded corners for immersive feel */
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
 }
 
 @media (min-width: 768px) {
+    .modal-content {
+        padding: 2rem;
+    }
+    .close-btn {
+        position: static;
+        align-self: flex-end;
+        margin-bottom: 1rem;
+    }
     #player-container {
         border-radius: 20px;
         width: 90%;
         max-width: 1200px;
+        width: 100%; /* Reset from 100vw */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 }
 
