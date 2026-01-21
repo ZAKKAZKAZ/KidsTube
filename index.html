@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KidsTube - 安全な動画プレイヤー</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">📺 キッズチューブ</div>
+      <button id="settings-btn" class="icon-btn" aria-label="保護者設定">
+        ⚙️
+      </button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app">
+      <!-- Kids View: Video Grid -->
+      <section id="kids-view" class="view active">
+        <div id="video-grid" class="grid-container">
+          <!-- Videos will be injected here -->
+          <div class="empty-state">
+            <p>
+              まだ動画がありません。<br />右上の設定ボタン(⚙️)から動画を追加してください。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Parent View: Settings -->
+      <section id="settings-view" class="view hidden">
+        <div class="settings-container">
+          <div class="settings-header">
+            <h2>保護者設定</h2>
+            <button id="close-settings-btn" class="secondary-btn">
+              閉じる
+            </button>
+          </div>
+
+          <div class="add-video-section">
+            <h3>動画を追加</h3>
+            <div class="input-group">
+              <input
+                type="text"
+                id="video-url-input"
+                placeholder="YouTubeのURLを貼り付け (例: https://youtu.be/...)"
+              />
+              <button id="add-video-btn" class="primary-btn">追加</button>
+            </div>
+            <p class="hint">
+              アンパンマンなどの動画URLをコピーしてここに貼り付けてください。
+            </p>
+          </div>
+
+          <div class="video-list-section">
+            <h3>登録済み動画一覧</h3>
+            <ul id="manage-video-list" class="manage-list">
+              <!-- List items will be injected here -->
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Video Player Modal -->
+    <div id="video-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-modal-btn" class="close-btn">❌ とじる</button>
+        <div id="player-container">
+          <div id="youtube-player"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lock Screen Modal (Simple Math Challenge) -->
+    <div id="lock-modal" class="modal hidden">
+      <div class="lock-content">
+        <h3>保護者確認</h3>
+        <p id="math-problem">3 + 5 = ?</p>
+        <input type="number" id="math-answer" placeholder="答えを入力" />
+        <div class="lock-actions">
+          <button id="unlock-btn" class="primary-btn">OK</button>
+          <button id="cancel-lock-btn" class="secondary-btn">キャンセル</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- YouTube API (Script removed as we use direct iframe now) -->
+    <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
+    <script src="app.js"></script>
+  </body>
+</html>
